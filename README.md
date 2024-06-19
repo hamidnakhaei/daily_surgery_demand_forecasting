@@ -26,12 +26,24 @@ After adding a new column to the data set as "Add_On," The summary table of desc
 | Name     | Min | Median | Mean  | Max  | Std.|
 | ------ | ----- | ------| ------| ------|----|
 | Add_On | -9    |7      |6.34   |23     |4.71|
+
 A new data set is defined with new variables $addx$, where x denotes the change made in the schedule 3 days before each surgery day. \
 The histogram and Q-Q plot of the variable "Actual" are given in the pictures below. It seems that "Actual" follows a normal distribution. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/1.png) \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/2.png) \
 
-
-The histograms of different "T...x" variables are given in the picture below. It seems that "Actual" follows a normal distribution.
-
+The histograms of different "T...x" variables are given in the picture below. It seems that "Actual" follows a normal distribution. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/3.png) \
+Scatter plots for the variables T…28, T…21, T…14, T…7, T…5, T…3, T…2, and Actual are shown pairwise in the figure below. In the last row of this figure, it is observed that the correlation between the scheduled number of surgeries and the actual number of surgeries increases as the day of surgery approaches. Therefore, the number of surgeries booked closer to the surgery day, such as the variables T…1 or T…3, has a greater impact on the actual number of surgeries compared to the number of surgeries booked farther in advance, like T…28. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/4.png) \
+Scatter plots for the variables addw4, addw3, addw2, addw1, Add_On, and Actual are shown pairwise in the figure below. The relatively low correlation among these variables is clearly visible from this figure. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/5.png) \
+To examine the impact of the day of the week (a categorical variable) on the number of surgeries (a continuous variable), a box plot and a histogram categorized by the day of the week were used. These plots are shown in the figures below. The histogram indicates that the number of surgeries on Fridays is generally lower than on other days, with its chart skewed to the left compared to others. Additionally, the highest number of surgeries typically occurs on Thursdays. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/6.png) \
+The box plot of the actual number of surgeries for each day of the week individually demonstrates differences between the days. For instance, fewer surgeries are usually performed on Fridays, while more surgeries are performed on Thursdays compared to other days. This chart also confirms the previously mentioned point that the lowest number of surgeries occurs on Fridays. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/7.png) \
+The figure below shows the scatter plot of the actual number of surgeries based on the variable T…4 and categorized by the day of the week. It is observed that the fitted lines for each day of the week differ. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/8.png)
 # Impact of Day of the Week:
 ## Determining whether the day of the week influences daily surgery demand by performing a relevant statistical test.
 
