@@ -58,15 +58,37 @@ Since the p-value is not less than 0.05, there is not enough evidence to reject 
 The lowest Add_On occurred on 2012/05/14, and the highest on 2012/08/01. On 17 days, Add_On was zero, and the scheduled number of surgeries on the last day matched the final actual number of surgeries.
 # Regression Model for Prediction:
 ## Developing a regression model to forecast daily surgery demand, interpreting the coefficients, and assessing model accuracy.
-The dependent and independent variables need to be identified to create the regression model. The dependent variable is the number of daily surgeries, or "Actual", but various combinations of independent variables can be used. Three different approaches were considered to create an appropriate regression model, and ultimately the best model was selected. The first and second approaches involve using the add and T variables as independent variables, respectively. In the second approach, since the T variables are correlated, a model containing more than two T variables was not created. The last approach considers the interaction effect in the independent variables, which will be explained later. It should be noted that the day of the week was used in all three approaches because the day of the week influences the number of surgeries. \
+The dependent and independent variables need to be identified to create the regression model. The dependent variable is the number of daily surgeries, or "Actual", but various combinations of independent variables can be used. Three different approaches were considered to create an appropriate regression model, and ultimately the best model was selected. The first and second approaches involve using the add and T variables as independent variables, respectively. In the second approach, since the T variables are correlated, a model containing more than two T variables was not created. The last approach considers the combination effect in the independent variables, which will be explained later. It should be noted that the day of the week was used in all three approaches because the day of the week influences the number of surgeries. \
 To validate the model, the data were divided into two sets. Some data were used to train the regression model, and the rest (test data) were used to validate the model. To separate the training and test data, the latest date was taken, and 90 days were subtracted from it. Since data is not available for all days of the week, fewer than 90 rows of data were eventually obtained for testing, with approximately 26% of the data allocated to testing. The $R^2$ value on the test data was considered a criterion for model validation. \
 Using data closer to the day of surgery increases model accuracy, but makes resource management decisions harder for the manager. Therefore, a middle ground should be considered. This decision should preferably be made in consultation with the management or head nurse or with a specialist. Here, it is assumed that if the number of surgeries is predicted 4 days before the actual surgery day, there will be enough time for resource management. \
 In the first approach, the day of the week, T…28, and other add variables are used. Initially, only the day of the week and T…28 variables are used, and new variables are gradually added to the model. This loop continues until we reach to add4. By comparing the outputs, it was found that increasing the number of variables and getting closer to the surgery day improves model accuracy and the $R^2$ value for the test. The coefficients and other characteristics of the best model in this loop are shown in the table below. \
 ![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/11.png) \
-In this model, all variables are significant except the dummy variables for Tuesday, Wednesday, and Thursday. These three variables are removed from the model, and the other variables remain. The model validation characteristics are shown in the table below.
-| criterion     | Min | Median | Mean  | Max  | Std.|
-| ------ | ----- | ------| ------| ------|----|
-| Add_On | -9    |7      |6.34   |23     |4.71|
+In this model, all variables are significant except the dummy variables for Tuesday, Wednesday, and Thursday. These three variables are removed from the model, and the other variables remain. The model validation characteristics are shown in the table below. \
+| criterion     | $R^2$ on training data | $R^2$ on test data |
+| ------ | ----- | ------|
+| value | 0.75   |0.55      |
+
+In the second approach, besides the day of the week, the T variables are used. A new for loop is created, where one of the T columns is taken in each iteration and modeled with DOW. Results show that selecting a day closer to the surgery improves the model accuracy ($R_2$). The validation characteristics for models with T…4 and T…5 are shown in the table below. \
+|     | $R^2$ on training data | $R^2$ on test data |
+| ------ | ----- | ------|
+| T...4 model | 0.73   |0.62      |
+| T...5 model | 0.73   |0.55      |
+
+As observed, these two models perform similarly for the training data but differ significantly for the test data. Therefore, the selected model from the second approach is the one related to T…4, with its coefficients and other characteristics shown in the table below. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/12.png) \
+It is worth noting that in this model, the DOWWed variable is removed because it has a high p-value, indicating that it is not significantly different from zero. \
+Comparing the first and second approaches, it can be said that the T…4 variable used in the second approach is the sum of all the variables in the first approach except DOW. In the second approach, instead of using 13 variables including T…28, addw4, addw3 up to add4, a function of these variables (the sum function) is used. Considering the $R_2$ values for the test and training data in the first approach, it is observed that there is a significant difference between them, which can indicate overfitting. The model predicts the training data well but not the test data. The difference in model accuracy between the test and training data in the second approach is significantly reduced. The cause of overfitting can be attributed to the large number of variables in the first approach. The more variables there are, the more parameters there are, and the more complex the model becomes. Additionally, the simpler the model, the better, and so far, the model from the second approach is the selected one. \
+The third approach is very similar to the second, with the difference that the combination effect of the DOW and T…4 variables is also considered. The validation characteristics of this model are shown in the table below. \
+| criterion     | $R^2$ on training data | $R^2$ on test data |
+| ------ | ----- | ------|
+| value | 0.74   |0.62      |
+
+It is observed that this model does not offer a significant advantage over the model from the second approach. The coefficients and other characteristics of this model are shown in the table below. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/13.png) \
+Besides not obtaining a significant advantage from this model, it also has less interpretability than the previous model, as most of its variables are insignificant and are removed from the model. Therefore, the model obtained in the second approach is better than those in the first and third approaches and is selected as the final model.
+
+Each coefficient in the model, as shown in Table 4.4, has its own meaning and interpretation. It is initially noted that the stars in the last column indicate that the obtained numbers are not randomly non-zero and have a significant difference from zero. The more stars, the more significant the difference of that coefficient from zero. It is observed that all variables except the dummy variable for Wednesday are significant, and hence the
+
 
 # Presenting to Management:
 ## Describing how to effectively present the forecast results to hospital management, discussing the confidence level in your predictions, and highlighting the critical aspects of the model.
