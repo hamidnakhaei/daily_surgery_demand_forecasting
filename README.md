@@ -46,10 +46,16 @@ The figure below shows the scatter plot of the actual number of surgeries based 
 ![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/8.png)
 # Impact of Day of the Week:
 ## Determining whether the day of the week influences daily surgery demand by performing a relevant statistical test.
-
+Here, the impact of a categorical variable (day of the week) on a continuous variable (actual number of surgeries) is examined. To do this, the continuous variable is divided into several categories to convert it into a categorical variable. A chi-square test is then used to examine the independence of these two categorical variable. The entire range of the actual number of surgeries is divided into four intervals of equal length. When a continuous variable is converted into a categorical variable in this way, some information is lost because all the data within each interval are considered equal, even though they are quantitatively different. The more categories there are, the less information is lost, but it also means fewer data points per cell in the corresponding data table. For the chi-square test, there should not be too few data points in each cell, so the number of categories must be chosen appropriately. After trial and error, the largest number of categories that allowed the chi-square test to be performed correctly was four, hence the number of categories was set to four. \
+For categorization, a new variable named actual_cat is added to the dataset, which takes one of the values c1, c2, c3, and c4 based on the "Actual" variable. A table of DOW and actual_cat is then created, which calculates the number of data points in each category for each day. This table, along with the chi-square test results, is shown in the table below. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/9.png) \
+Since the p-value is less than 0.05, the null hypothesis is rejected, and it can be concluded that these two variables are not independent, indicating that the day of the week can influence the number of surgeries.
 # On-Add Dependency on Weekdays:
 ## Examining whether the number of on-adds is influenced by the day of the week. This is done by Identifying the dates with the highest and lowest on-adds and counting the days where scheduled and actual surgeries match.
-
+This section is very similar to the previous one, and the procedure followed there is also implemented here, with the difference that the number of categories is considered to be three. The reasons for this are the same as those explained in the previous section. For this purpose, a new variable named addon_cat is added to the dataset, which takes the values c1, c2, and c3. The table of these variables and the chi-square test results are shown in the table below. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/e069c3994185752067040d931b3ed3a13439152a/Fig/10.png) \
+Since the p-value is not less than 0.05, there is not enough evidence to reject the null hypothesis. It can be concluded that these two variables are independent, and the day of the week does not influence Add_On. \
+The lowest Add_On occurred on 2012/05/14, and the highest on 2012/08/01. On 17 days, Add_On was zero, and the scheduled number of surgeries on the last day matched the final actual number of surgeries.
 # Regression Model for Prediction:
 ## Developing a regression model to forecast daily surgery demand, interpreting the coefficients, and assessing model accuracy.
 
