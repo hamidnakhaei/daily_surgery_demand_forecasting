@@ -25,6 +25,8 @@ After adding a new column to the data set as "Add_On," its descriptive statistic
 | Name     | Min | Median | Mean  | Max  | Std.|
 | ------ | ----- | ------| ------| ------|----|
 | Add_On | -9    |7      |6.34   |23     |4.71|
+A new data set is defined with new variables $addx$, where x denotes the change made in the schedule 3 days before the surgury day.
+
 # Impact of Day of the Week:
 # On-Add Dependency on Weekdays:
 # Regression Model for Prediction:
