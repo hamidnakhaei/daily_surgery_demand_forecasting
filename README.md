@@ -8,7 +8,8 @@ Given these points, it becomes clear that not knowing the exact number of surger
 # Data
 The surgery scheduling data for each day has been collected over 48 weeks. In this data, the number of surgeries scheduled by the end of $x$ days before the surgey day is denoted by the variable $T...x$. For example, for the date 10/10/2010, the number of surgeries scheduled 7 days in advance is 80, and this number reaches 104 one day in advance (denoted as $T...1$), which is when the elective surgery schedule is finalized. Note that surgeries can be scheduled up to 28 days in advance. Additionally, there are some "on-add" cases that cause the actual number of surgeries performed on a given day to differ from the number recorded the previous day. The variable "Actual" denotes the actual number of surgeries performed each day. The variable "DOW" denotes the day of the week.
 # Using Descriptive Analytics:
-statistics descriptive table for some selected variables is as follows:
+## Employing descriptive analytics to identify and present factors that are crucial for understanding the variables affecting daily surgery demand.
+The summary table of descriptive statistics for some selected variables is as follows:
 
 | Name     | Min | Median | Mean   | Max  |
 | ------ | ----- | ------| ------| ------|
@@ -20,16 +21,31 @@ statistics descriptive table for some selected variables is as follows:
 | $T...1$  | 3   |112|110|139|
 | Actual   | 1   |117|116|145|
 
-After adding a new column to the data set as "Add_On," its descriptive statistics is as follows:
+After adding a new column to the data set as "Add_On," The summary table of descriptive statistics for it is as follows:
 
 | Name     | Min | Median | Mean  | Max  | Std.|
 | ------ | ----- | ------| ------| ------|----|
 | Add_On | -9    |7      |6.34   |23     |4.71|
-A new data set is defined with new variables $addx$, where x denotes the change made in the schedule 3 days before the surgury day.
+A new data set is defined with new variables $addx$, where x denotes the change made in the schedule 3 days before each surgery day. \
+The histogram and Q-Q plot of the variable "Actual" are given in the pictures below. It seems that "Actual" follows a normal distribution. \
+
+
+The histograms of different "T...x" variables are given in the picture below. It seems that "Actual" follows a normal distribution.
 
 # Impact of Day of the Week:
+## Determining whether the day of the week influences daily surgery demand by performing a relevant statistical test.
+
 # On-Add Dependency on Weekdays:
+## Examining whether the number of on-adds is influenced by the day of the week. This is done by Identifying the dates with the highest and lowest on-adds and counting the days where scheduled and actual surgeries match.
+
 # Regression Model for Prediction:
+## Developing a regression model to forecast daily surgery demand, interpreting the coefficients, and assessing model accuracy.
+
 # Presenting to Management:
+## Describing how to effectively present the forecast results to hospital management, discussing the confidence level in your predictions, and highlighting the critical aspects of the model.
+
 # Stratification vs. Dummy Variables:
+## Comparing the use of DOW as a factor with dummy variables against creating separate regression models for each day of the week, explaining the differences and implications of these approaches.
+
 # Request for Additional Data:
+## Suggesting additional variables that could be requested from the hospital to enhance the predictive accuracy of the model.
