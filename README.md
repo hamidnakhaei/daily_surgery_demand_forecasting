@@ -8,6 +8,23 @@ Given these points, it becomes clear that not knowing the exact number of surger
 # Data
 The surgery scheduling data for each day has been collected over 48 weeks. In this data, the number of surgeries scheduled by the end of $x$ days before the surgey day is denoted by the variable $T...x$. For example, for the date 10/10/2010, the number of surgeries scheduled 7 days in advance is 80, and this number reaches 104 one day in advance (denoted as $T...1$), which is when the elective surgery schedule is finalized. Note that surgeries can be scheduled up to 28 days in advance. Additionally, there are some "on-add" cases that cause the actual number of surgeries performed on a given day to differ from the number recorded the previous day. The variable "Actual" denotes the actual number of surgeries performed each day. The variable "DOW" denotes the day of the week.
 # Using Descriptive Analytics:
+statistics descriptive table for some selected variables is as follows:
+
+| Name     | Min | Median | Mean   | Max  |
+| ------ | ----- | ------| ------| ------|
+| $T...28$ | 0   |35|34|57|
+|$T...14$  | 0   |65|64|93|
+| $T...7$  | 0   |87|86|118|
+| $T...4$  | 0   |97|94|124|
+| $T...2$  | 0   |103|101|131|
+| $T...1$  | 3   |112|110|139|
+| Actual   | 1   |117|116|145|
+
+After adding a new column to the data set as "Add_On," its descriptive statistics is as follows:
+
+| Name     | Min | Median | Mean  | Max  | Std.|
+| ------ | ----- | ------| ------| ------|----|
+| Add_On | -9    |7      |6.34   |23     |4.71|
 # Impact of Day of the Week:
 # On-Add Dependency on Weekdays:
 # Regression Model for Prediction:
