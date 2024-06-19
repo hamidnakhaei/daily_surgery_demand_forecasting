@@ -85,16 +85,40 @@ The third approach is very similar to the second, with the difference that the c
 
 It is observed that this model does not offer a significant advantage over the model from the second approach. The coefficients and other characteristics of this model are shown in the table below. \
 ![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/6858eca5cfa8e0a762d2af7475a434199a28e454/Fig/13.jpeg) \
-Besides not obtaining a significant advantage from this model, it also has less interpretability than the previous model, as most of its variables are insignificant and are removed from the model. Therefore, the model obtained in the second approach is better than those in the first and third approaches and is selected as the final model.
-
-Each coefficient in the model, as shown in Table 4.4, has its own meaning and interpretation. It is initially noted that the stars in the last column indicate that the obtained numbers are not randomly non-zero and have a significant difference from zero. The more stars, the more significant the difference of that coefficient from zero. It is observed that all variables except the dummy variable for Wednesday are significant, and hence the
-
-
+Besides not obtaining a significant advantage from this model, it also has less interpretability than the previous model, as most of its variables are insignificant and are removed from the model. Therefore, the model obtained in the second approach is better than those in the first and third approaches and is selected as the final model. \
+Each coefficient in the model has its own meaning and interpretation. Initially, it is worth mentioning that the stars in the last column indicate that the obtained numbers are not randomly non-zero and differ significantly from zero. It is observed that all variables, except the dummy variable for Wednesday, are significant, and hence the variable for Wednesday has been removed from the model. The coefficient in the second row is the intercept and shows that if all variables are zero, approximately 30.8 surgeries will be performed in a day. The coefficient in the third row indicates that if the day of the surgery is Tuesday, about 3.5 surgeries are subtracted from the total number. As previously mentioned, the coefficient in the fourth row is not considered. Similarly, the coefficients in the fifth and sixth rows respectively indicate that if the surgery day is Thursday and Friday, approximately 4.7 and 6.9 surgeries are subtracted from the total number. The coefficient in the seventh row indicates that for each unit increase in the number of scheduled surgeries four days before the surgery day, the actual surgeries increase by 0.88.
 # Presenting to Management:
 ## Describing how to effectively present the forecast results to hospital management, discussing the confidence level in your predictions, and highlighting the critical aspects of the model.
+The model result can be presented as the following equation: \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/17f362b8b30bb4066c228021d434b1d6bf40f830/Fig/14.jpeg) \
+where $T4$ is the number of surgeries scheduled 4 days before the surgery day, and $y$ is the predicted number of surgeries for the respective day. It should be noted that the obtained value from this formula is the average predicted number of surgeries. Also, the parameters obtained for the model are the average values of these parameters. A confidence interval can be provided with all the predictor variables. For instance, a $(1- \alpha)$ percent confidence interval for the number of daily surgeries means that we are $(1- \alpha)$ percent confident that this interval includes the actual number of surgeries. Since there is no input data for prediction, a hypothetical data point is considered. If the number of surgeries scheduled 4 days before is 100, and the surgery day is Friday, we have: \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/17f362b8b30bb4066c228021d434b1d6bf40f830/Fig/15.jpeg) \
+The average upper and lower limits (confidence interval) for a 95% confidence level are shown in the table below. This means that we are 95% confident that this interval includes the actual number of surgeries. 
+| Mean     | Upper bound | Lower bound |
+| ------ | ----- | ------|
+| 126.4 | 139.1   |113.7      |
 
+Since the estimated parameters for the model are themselves random variables, a 95% and 80% confidence interval for them is shown in the table below. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/17f362b8b30bb4066c228021d434b1d6bf40f830/Fig/16.jpeg)
 # Stratification vs. Dummy Variables:
 ## Comparing the use of DOW as a factor with dummy variables against creating separate regression models for each day of the week, explaining the differences and implications of these approaches.
-
+A subset of the data is considered for each day of the week, which only includes the data for that specific day. Then, the same chosen regression model is implemented on this subset. The only difference is that DOW is no longer used as an independent variable. In fact, this model predicts the actual number of surgeries only with the variable T...4. The results of these models are shown in the table below. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/17f362b8b30bb4066c228021d434b1d6bf40f830/Fig/17.jpeg) \
+It is observed that all variables are significant in all these models. The scatter plot of these models, separated by test and training data, is shown in the figure below. \
+![](https://github.com/hamidnakhaei/daily_surgery_demand_forecasting/blob/17f362b8b30bb4066c228021d434b1d6bf40f830/Fig/18.jpeg) \
+Using these five models, it is observed which day of the week the created model has more accuracy and which days have less. It is seen that for Mondays and Thursdays, the $R_2$ value for the test data is lower than initial model, but for the remaining days, this value is higher than the initial model.
 # Request for Additional Data:
 ## Suggesting additional variables that could be requested from the hospital to enhance the predictive accuracy of the model.
+To improve the model, factors that can describe the data variability more completely are needed. For this purpose, a comprehensive understanding of hospital conditions is necessary. It is preferable to consult with a specialist or head nurse who has extensive work experience and a better understanding of the conditions. These individuals have better understood the various reasons for extra demand or add-ons over time.
+
+Despite personal lack of experience, it seems that if the surgeries are categorized by type of surgery, a more accurate model can be provided because add-ons and bookings may behave differently based on the type of surgery. Depending on the type of surgery, the type of anesthesia or sedation varies, and each surgery may have a different risk level. It is possible that by accessing the type of surgery, this differentiation can be made, and prediction accuracy can be increased.
+
+The number of occupied beds in hospital wards and another factor such as hospital admission rate might also be effective in predicting the number of surgeries. Since some patients who undergo surgery are hospitalized in wards before the surgery, an increase in hospitalizations may increase the actual number of surgeries.
+
+General information about each patient (such as age, height, weight, etc.) might also help. This is because, for example, in older individuals, the likelihood of surgery cancellation may increase due to unstable health conditions compared to younger individuals.
+
+Another factor that seems to help in predicting the actual number of surgeries is the patient's waiting time from booking to surgery day. The longer this time is, the more likely it is for conditions to change, making surgery cancellation more probable.
+
+Changing the analysis and problem-solving approach might also yield better results. For example, with long-term real surgery data and using time series models, better results might be obtained compared to regression.
+
+It is also worth examining other factors such as surgery cost, duration of the surgery, and whether the surgery is outpatient or inpatient.
